@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Bike Form</h1>
+<div mat-dialog-content>
+    <form [formGroup]="bikeForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Model</mat-label>
+            <input formControlName="model" matInput placeholder="Canyon Spectral 5">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Manufacturer</mat-label>
+            <mat-select formControlName="manufacturerId">
+                <mat-option *ngFor="let manufacturer of dialogData.manufacturers" [value]="manufacturer.id">{{manufacturer.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Frame Size</mat-label>
+            <input formControlName="frameSize" matInput placeholder="27.5" type="number">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Price</mat-label>
+            <input formControlName="price" matInput placeholder="500" type="number">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" (click)="closeDialog()">Cancel</button>
+    <button style="margin-left: 10px;" mat-raised-button color="primary" (click)="upsertBike()" >Save</button>
+</div>
